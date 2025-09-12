@@ -16,4 +16,8 @@ class Config(BaseSettings):
         env_file=".env", case_sensitive=False, validate_default=True
     )
 
-    debug: bool = False
+    debug: bool = True
+    port: int = 8191
+    headless: bool = False
+    proxy: str = "http://127.0.0.1:12080"
+    user_data_dir: str = "C:\\Users\\nekoimi\\Downloads\\rod-data"

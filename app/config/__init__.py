@@ -7,6 +7,4 @@ from loguru import logger
 c = Config()
 logger.info("配置信息：{}", c.model_dump_json())
 
-__all__ = [
-    'c'
-]
+__all__ = ["c"]
