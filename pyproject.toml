@@ -1,0 +1,20 @@
+[project]
+name = "drission-rod"
+version = "0.1.0"
+description = "drission-rod"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "drissionpage>=4.1.1.2",
+    "loguru>=0.7.3",
+    "pydantic-settings>=2.10.1",
+]
+
+[tool.uv]
+index-url = "https://mirrors.aliyun.com/pypi/simple/"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.13.0",
+    "setuptools>=80.9.0",
+]
