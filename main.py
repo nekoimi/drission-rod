@@ -26,7 +26,7 @@ async def shutdown_event():
 
 @app.post("/fetch")
 async def fetch(req: FetchRequest):
-    html = browser.download(req=req)
+    html = await browser.download(req=req)
     return JSONResponse(
         status_code=200,
         content={
