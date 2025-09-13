@@ -118,5 +118,5 @@ class JavDBBrowser(object):
             return cur_tab.html
         finally:
             if cur_tab:
-                # cur_tab.close()
+                cur_tab.close()
                 logger.debug(f"关闭页面：{req.url}")
