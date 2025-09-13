@@ -41,9 +41,11 @@ class JavDBBrowser(object):
         self.browser = Chromium(addr_or_opts=options)
         # 初始化ocr
         self.ocr = DdddOcr(show_ad=False)
+        logger.info("javdb browser start")
 
     def stop(self):
         self.browser.quit(del_data=c.debug)
+        logger.info("javdb browser stop")
 
     def login(self, page_tab: MixTab):
         raw_url = page_tab.url

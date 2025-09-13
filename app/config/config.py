@@ -17,7 +17,8 @@ class Config(BaseSettings):
     )
 
     debug: bool = True
-    port: int = 8191
+    http_port: int = 8191
+    grpc_port: int = 8291
     # 浏览器配置
     headless: bool = False
     proxy: str = "http://127.0.0.1:12080"
