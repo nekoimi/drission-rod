@@ -1,4 +1,4 @@
-FROM python:3.12-alpine
+FROM python:3.12.11-slim-bookworm
 
 LABEL maintainer="nekoimi <nekoimime@gmail.com>"
 
@@ -14,6 +14,6 @@ RUN sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsing
     python -m pip install -i https://mirrors.aliyun.com/pypi/simple/ --no-cache-dir uv && \
     uv sync --index-url https://mirrors.aliyun.com/pypi/simple/
 
-EXPOSE 8191
+EXPOSE 8191 8291
 
 CMD [ "uv", "run", "main.py" ]

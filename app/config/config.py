@@ -20,9 +20,9 @@ class Config(BaseSettings):
     http_port: int = 8191
     grpc_port: int = 8291
     # 浏览器配置
-    headless: bool = False
-    proxy: str = "http://127.0.0.1:12080"
-    user_data_dir: str
+    chromium_headless: bool = False
+    chromium_proxy: str = "http://127.0.0.1:12080"
+    chromium_data_dir: str
     # javdb
     javdb_username: str = ""
     javdb_password: str = ""

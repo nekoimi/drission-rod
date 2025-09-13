@@ -30,11 +30,11 @@ class JavDBBrowser(object):
         options = ChromiumOptions()
         options.no_imgs(False)  # 设置不加载图片
         options.mute(True)  # 静音
-        options.headless(on_off=c.headless)  # 无头模式
+        options.headless(on_off=c.chromium_headless)  # 无头模式
         options.set_argument("--window-size", "1920,1080")
-        options.set_user_data_path(path=c.user_data_dir)
-        if c.proxy:
-            options.set_proxy(proxy=c.proxy)
+        options.set_user_data_path(path=c.chromium_data_dir)
+        if c.chromium_proxy:
+            options.set_proxy(proxy=c.chromium_proxy)
         options.set_user_agent(
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36"
         )
