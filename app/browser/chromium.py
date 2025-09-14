@@ -11,8 +11,12 @@ def setup_browser() -> Chromium:
     options = ChromiumOptions()
     options.no_imgs(False)  # 设置不加载图片
     options.mute(True)  # 静音
-    options.headless(on_off=c.chromium_headless)  # 无头模式
+    options.set_argument('--no-sandbox')
+    options.set_argument('--disable-dev-shm-usage')
     options.set_argument("--window-size", "1920,1080")
+    options.headless(on_off=c.chromium_headless)  # 无头模式
+    if c.chromium_headless:
+        options.set_argument('--headless=new')
     options.set_user_data_path(path=c.chromium_data_dir)
     if c.chromium_proxy:
         options.set_proxy(proxy=c.chromium_proxy)
