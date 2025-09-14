@@ -24,6 +24,9 @@ RUN apt-get update \
 
 COPY local.conf /etc/fonts/local.conf
 
+# install uv
+RUN pip install --no-cache-dir --prefix=/usr/local uv
+
 # 创建工作目录并添加用户
 RUN mkdir -p /workspace && mkdir -p /var/lib/chromium-data && \
     groupadd -g 1000 appuser && \
