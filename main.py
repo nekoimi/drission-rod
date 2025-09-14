@@ -11,7 +11,9 @@ from app.grpc.fetch_grpc_server import ChromiumPageFetchServiceServicer
 from app.grpc.fetch_pb2_grpc import add_PageFetchServiceServicer_to_server
 from app.browser import setup_browser
 from app.utils.nettools import get_lan_ip
+from app.log import setup_loguru
 
+setup_loguru()
 thread_pool = ThreadPoolExecutor(max_workers=10)
 
 

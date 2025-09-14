@@ -17,8 +17,7 @@ class Config(BaseSettings):
     )
 
     debug: bool = True
-    http_port: int = 8191
-    grpc_port: int = 8291
+    grpc_port: int = 8191
     # 浏览器配置
     chromium_headless: bool = False
     chromium_proxy: str = "http://127.0.0.1:12080"

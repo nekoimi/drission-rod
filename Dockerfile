@@ -12,6 +12,6 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 # install depts
 RUN uv sync --index-url https://mirrors.aliyun.com/pypi/simple/
 
-EXPOSE 8191 8291
+EXPOSE 8191
 
 CMD [ "uv", "run", "main.py" ]
