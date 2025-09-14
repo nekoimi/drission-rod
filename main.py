@@ -25,15 +25,15 @@ def serve():
     ip = get_lan_ip()
     logger.info("当前主机IP：{}", ip)
 
-    # 启动 grpc 服务
-    server = grpc.server(thread_pool=thread_pool)
-    add_PageFetchServiceServicer_to_server(
-        servicer=ChromiumPageFetchServiceServicer(browser=browser), server=server
-    )
-    listen_addr = f"0.0.0.0:{c.grpc_port}"
-    server.add_insecure_port(address=listen_addr)
-    logger.info(f"Starting server on {listen_addr} ...")
     try:
+        # 启动 grpc 服务
+        server = grpc.server(thread_pool=thread_pool)
+        add_PageFetchServiceServicer_to_server(
+            servicer=ChromiumPageFetchServiceServicer(browser=browser), server=server
+        )
+        listen_addr = f"0.0.0.0:{c.grpc_port}"
+        server.add_insecure_port(address=listen_addr)
+        logger.info(f"Starting server on {listen_addr} ...")
         server.start()
         server.wait_for_termination()
     except Exception as e:
