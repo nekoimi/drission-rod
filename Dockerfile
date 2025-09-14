@@ -11,4 +11,5 @@ RUN uv sync --index-url https://mirrors.aliyun.com/pypi/simple/
 
 EXPOSE 8191
 
-CMD [ "uv", "run", "main.py" ]
+#CMD [ "uv", "run", "main.py" ]
+CMD [ "python", "main.py" ]
