@@ -38,7 +38,7 @@ RUN mkdir -p /workspace && mkdir -p /var/lib/chromium-data && \
 ENV CHROMIUM_FLAGS="--disable-software-rasterizer --disable-dev-shm-usage"
 ENV CHROME_BIN=/usr/bin/chromium
 
-# 设置 Chromium 启动路径给 Rod 用
+# 设置 Chromium 启动路径
 ENV CHROMIUM_BROWSER_PATH=/usr/bin/chromium
 ENV CHROMIUM_DATA_DIR=/var/lib/chromium-data
 
@@ -49,4 +49,4 @@ WORKDIR /workspace
 
 VOLUME /var/lib/chromium-data
 
-ENTRYPOINT ["chromium", "--headless"]
+# ENTRYPOINT ["chromium", "--headless"]
