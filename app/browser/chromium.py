@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # nekoimi 2025/9/14
-from app.config import c
-from loguru import logger
 from DrissionPage import Chromium, ChromiumOptions
+from DrissionPage.common import Settings
+from loguru import logger
+
+from app.config import c
 
 _browser: Chromium | None = None
+
+Settings.set_language("zh_cn")  # 设置为中文时，填入'zh_cn'
 
 
 def setup_browser() -> Chromium:

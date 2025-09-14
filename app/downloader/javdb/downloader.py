@@ -75,6 +75,10 @@ class JavDBBrowserDownloader(BrowserDownloader):
                 r18btn.click.left()
                 self.wait_page_complete(page_tab)
 
+    def cloudflare_check(self, page_tab: MixTab):
+        title = page_tab.title
+        logger.debug(f"cloudflare_check - title: {title}")
+
     def download(self, req: FetchRequest) -> str:
         logger.debug(f"开始下载页面：{req.url} ...")
         cur_tab = None
@@ -82,6 +86,8 @@ class JavDBBrowserDownloader(BrowserDownloader):
             cur_tab = self.browser.new_tab()
             cur_tab.get(url=req.url, show_errmsg=True, interval=5, timeout=req.timeout)
             self.wait_page_complete(cur_tab)
+            # 检查 cloudflare 人机验证
+            self.cloudflare_check(cur_tab)
             # 检查r18确认弹窗
             self.r18modal_check(cur_tab)
             # 检查是否需要登录

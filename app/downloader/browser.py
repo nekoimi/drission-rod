@@ -21,7 +21,7 @@ class BrowserDownloader(abc.ABC):
 
     def wait_page_complete(self, page_tab: MixTab):
         page_tab.wait.doc_loaded()
-        while page_tab.states.ready_state in "connectingloadinginteractive":
+        while page_tab.states.ready_state in ["connecting", "loading", "interactive"]:
             page_tab.wait(1, 3.5)
 
     @abc.abstractmethod
