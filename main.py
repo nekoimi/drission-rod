@@ -34,7 +34,7 @@ def serve():
         ),
         server=server
     )
-    listen_addr = f"{ip}:{c.grpc_port}"
+    listen_addr = f"0.0.0.0:{c.grpc_port}"
     server.add_insecure_port(address=listen_addr)
     logger.info(f"Starting server on {listen_addr} ...")
     try:

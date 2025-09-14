@@ -35,17 +35,17 @@ class PageFetchServiceStub(object):
             channel: A grpc.Channel.
         """
         self.Fetch = channel.unary_unary(
-                '/PageFetchService/Fetch',
+                '/grpc.PageFetchService/Fetch',
                 request_serializer=fetch__pb2.FetchRequest.SerializeToString,
                 response_deserializer=fetch__pb2.FetchResponse.FromString,
                 _registered_method=True)
         self.FetchJavDB = channel.unary_unary(
-                '/PageFetchService/FetchJavDB',
+                '/grpc.PageFetchService/FetchJavDB',
                 request_serializer=fetch__pb2.FetchRequest.SerializeToString,
                 response_deserializer=fetch__pb2.FetchResponse.FromString,
                 _registered_method=True)
         self.FetchSehuatang = channel.unary_unary(
-                '/PageFetchService/FetchSehuatang',
+                '/grpc.PageFetchService/FetchSehuatang',
                 request_serializer=fetch__pb2.FetchRequest.SerializeToString,
                 response_deserializer=fetch__pb2.FetchResponse.FromString,
                 _registered_method=True)
@@ -92,9 +92,9 @@ def add_PageFetchServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'PageFetchService', rpc_method_handlers)
+            'grpc.PageFetchService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('PageFetchService', rpc_method_handlers)
+    server.add_registered_method_handlers('grpc.PageFetchService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -115,7 +115,7 @@ class PageFetchService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/PageFetchService/Fetch',
+            '/grpc.PageFetchService/Fetch',
             fetch__pb2.FetchRequest.SerializeToString,
             fetch__pb2.FetchResponse.FromString,
             options,
@@ -142,7 +142,7 @@ class PageFetchService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/PageFetchService/FetchJavDB',
+            '/grpc.PageFetchService/FetchJavDB',
             fetch__pb2.FetchRequest.SerializeToString,
             fetch__pb2.FetchResponse.FromString,
             options,
@@ -169,7 +169,7 @@ class PageFetchService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/PageFetchService/FetchSehuatang',
+            '/grpc.PageFetchService/FetchSehuatang',
             fetch__pb2.FetchRequest.SerializeToString,
             fetch__pb2.FetchResponse.FromString,
             options,

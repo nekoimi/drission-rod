@@ -10,6 +10,7 @@ from app.downloader.default.downloader import DefaultBrowserDownloader, FetchReq
 from app.downloader.javdb.downloader import JavDBBrowserDownloader
 from app.downloader.sehuatang.downloader import SehuatangBrowserDownloader
 from app.grpc.fetch_pb2_grpc import PageFetchServiceServicer
+from app.grpc.fetch_pb2 import FetchResponse
 
 thread_pool = ThreadPoolExecutor(max_workers=10)
 
@@ -27,25 +28,37 @@ class ChromiumPageFetchServiceServicer(PageFetchServiceServicer):
         self.sehuatang_downloader = SehuatangBrowserDownloader(self.browser)
 
     def Fetch(self, request, context):
-        return self.default_downloader.download(
-            req=FetchRequest(
-                url=request.url,
-                timeout=request.timeout
+        try:
+            html = self.default_downloader.download(
+                req=FetchRequest(
+                    url=request.url,
+                    timeout=request.timeout
+                )
             )
-        )
+            return FetchResponse(success=True, html=html)
+        except Exception as e:
+            return FetchResponse(success=False, error=str(e))
 
     def FetchJavDB(self, request, context):
-        return self.javdb_downloader.download(
-            req=FetchRequest(
-                url=request.url,
-                timeout=request.timeout
+        try:
+            html = self.javdb_downloader.download(
+                req=FetchRequest(
+                    url=request.url,
+                    timeout=request.timeout
+                )
             )
-        )
+            return FetchResponse(success=True, html=html)
+        except Exception as e:
+            return FetchResponse(success=False, error=str(e))
 
     def FetchSehuatang(self, request, context):
-        return self.sehuatang_downloader.download(
-            req=FetchRequest(
-                url=request.url,
-                timeout=request.timeout
+        try:
+            html = self.sehuatang_downloader.download(
+                req=FetchRequest(
+                    url=request.url,
+                    timeout=request.timeout
+                )
             )
-        )
+            return FetchResponse(success=True, html=html)
+        except Exception as e:
+            return FetchResponse(success=False, error=str(e))

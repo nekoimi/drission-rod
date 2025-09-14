@@ -24,17 +24,17 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0b\x66\x65tch.proto\",\n\x0c\x46\x65tchRequest\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x0f\n\x07timeout\x18\x02 \x01(\x05\"=\n\rFetchResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0c\n\x04html\x18\x02 \x01(\t\x12\r\n\x05\x65rror\x18\x03 \x01(\t2\x98\x01\n\x10PageFetchService\x12&\n\x05\x46\x65tch\x12\r.FetchRequest\x1a\x0e.FetchResponse\x12+\n\nFetchJavDB\x12\r.FetchRequest\x1a\x0e.FetchResponse\x12/\n\x0e\x46\x65tchSehuatang\x12\r.FetchRequest\x1a\x0e.FetchResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0b\x66\x65tch.proto\x12\x04grpc\",\n\x0c\x46\x65tchRequest\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x0f\n\x07timeout\x18\x02 \x01(\x05\"=\n\rFetchResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0c\n\x04html\x18\x02 \x01(\t\x12\r\n\x05\x65rror\x18\x03 \x01(\t2\xb6\x01\n\x10PageFetchService\x12\x30\n\x05\x46\x65tch\x12\x12.grpc.FetchRequest\x1a\x13.grpc.FetchResponse\x12\x35\n\nFetchJavDB\x12\x12.grpc.FetchRequest\x1a\x13.grpc.FetchResponse\x12\x39\n\x0e\x46\x65tchSehuatang\x12\x12.grpc.FetchRequest\x1a\x13.grpc.FetchResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'fetch_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_FETCHREQUEST']._serialized_start=15
-  _globals['_FETCHREQUEST']._serialized_end=59
-  _globals['_FETCHRESPONSE']._serialized_start=61
-  _globals['_FETCHRESPONSE']._serialized_end=122
-  _globals['_PAGEFETCHSERVICE']._serialized_start=125
-  _globals['_PAGEFETCHSERVICE']._serialized_end=277
+  _globals['_FETCHREQUEST']._serialized_start=21
+  _globals['_FETCHREQUEST']._serialized_end=65
+  _globals['_FETCHRESPONSE']._serialized_start=67
+  _globals['_FETCHRESPONSE']._serialized_end=128
+  _globals['_PAGEFETCHSERVICE']._serialized_start=131
+  _globals['_PAGEFETCHSERVICE']._serialized_end=313
 # @@protoc_insertion_point(module_scope)
