@@ -14,9 +14,6 @@ RUN curl -L https://github.com/grpc-ecosystem/grpc-health-probe/releases/downloa
     -o /usr/local/bin/grpc_health_probe \
     && chmod +x /usr/local/bin/grpc_health_probe
 
-# Run as non-privileged
-USER appuser
-
 EXPOSE 8191
 
 CMD [ "uv", "run", "main.py" ]
