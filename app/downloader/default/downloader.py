@@ -8,7 +8,6 @@ from app.downloader.browser import BrowserDownloader, FetchRequest
 
 
 class DefaultBrowserDownloader(BrowserDownloader):
-
     def __init__(self, browser: Chromium):
         super().__init__(browser)
 
@@ -17,12 +16,7 @@ class DefaultBrowserDownloader(BrowserDownloader):
         cur_tab = None
         try:
             cur_tab = self.browser.new_tab()
-            cur_tab.get(
-                url=req.url,
-                show_errmsg=True,
-                interval=5,
-                timeout=req.timeout
-            )
+            cur_tab.get(url=req.url, show_errmsg=True, interval=5, timeout=req.timeout)
             self.wait_page_complete(cur_tab)
             return cur_tab.html
         finally:

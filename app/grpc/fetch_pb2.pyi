@@ -10,7 +10,9 @@ class FetchRequest(_message.Message):
     TIMEOUT_FIELD_NUMBER: _ClassVar[int]
     url: str
     timeout: int
-    def __init__(self, url: _Optional[str] = ..., timeout: _Optional[int] = ...) -> None: ...
+    def __init__(
+        self, url: _Optional[str] = ..., timeout: _Optional[int] = ...
+    ) -> None: ...
 
 class FetchResponse(_message.Message):
     __slots__ = ("success", "html", "error")
@@ -20,4 +22,9 @@ class FetchResponse(_message.Message):
     success: bool
     html: str
     error: str
-    def __init__(self, success: bool = ..., html: _Optional[str] = ..., error: _Optional[str] = ...) -> None: ...
+    def __init__(
+        self,
+        success: bool = ...,
+        html: _Optional[str] = ...,
+        error: _Optional[str] = ...,
+    ) -> None: ...

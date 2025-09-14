@@ -30,10 +30,7 @@ class ChromiumPageFetchServiceServicer(PageFetchServiceServicer):
     def Fetch(self, request, context):
         try:
             html = self.default_downloader.download(
-                req=FetchRequest(
-                    url=request.url,
-                    timeout=request.timeout
-                )
+                req=FetchRequest(url=request.url, timeout=request.timeout)
             )
             return FetchResponse(success=True, html=html)
         except Exception as e:
@@ -42,10 +39,7 @@ class ChromiumPageFetchServiceServicer(PageFetchServiceServicer):
     def FetchJavDB(self, request, context):
         try:
             html = self.javdb_downloader.download(
-                req=FetchRequest(
-                    url=request.url,
-                    timeout=request.timeout
-                )
+                req=FetchRequest(url=request.url, timeout=request.timeout)
             )
             return FetchResponse(success=True, html=html)
         except Exception as e:
@@ -54,10 +48,7 @@ class ChromiumPageFetchServiceServicer(PageFetchServiceServicer):
     def FetchSehuatang(self, request, context):
         try:
             html = self.sehuatang_downloader.download(
-                req=FetchRequest(
-                    url=request.url,
-                    timeout=request.timeout
-                )
+                req=FetchRequest(url=request.url, timeout=request.timeout)
             )
             return FetchResponse(success=True, html=html)
         except Exception as e:

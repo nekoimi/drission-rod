@@ -15,6 +15,8 @@ from app.log import setup_loguru
 
 setup_loguru()
 thread_pool = ThreadPoolExecutor(max_workers=10)
+# 初始化 Chromium
+browser = setup_browser()
 
 
 def serve():
@@ -23,16 +25,10 @@ def serve():
     ip = get_lan_ip()
     logger.info("当前主机IP：{}", ip)
 
-    # 初始化 Chromium
-    browser = setup_browser()
-
     # 启动 grpc 服务
     server = grpc.server(thread_pool=thread_pool)
     add_PageFetchServiceServicer_to_server(
-        servicer=ChromiumPageFetchServiceServicer(
-            browser=browser
-        ),
-        server=server
+        servicer=ChromiumPageFetchServiceServicer(browser=browser), server=server
     )
     listen_addr = f"0.0.0.0:{c.grpc_port}"
     server.add_insecure_port(address=listen_addr)
