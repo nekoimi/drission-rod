@@ -42,9 +42,6 @@ ENV CHROME_BIN=/usr/bin/chromium
 ENV CHROMIUM_BROWSER_PATH=/usr/bin/chromium
 ENV CHROMIUM_DATA_DIR=/var/lib/chromium-data
 
-# Run as non-privileged
-USER appuser
-
 WORKDIR /workspace
 
 VOLUME /var/lib/chromium-data
