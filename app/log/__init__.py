@@ -32,10 +32,7 @@ def setup_loguru():
         logging.root.removeHandler(handler)
 
     # Intercept standard logging
-    if c.debug:
-        logging.basicConfig(handlers=[InterceptHandler()], level=logging.DEBUG)
-    else:
-        logging.basicConfig(handlers=[InterceptHandler()], level=logging.INFO)
+    logging.basicConfig(handlers=[InterceptHandler()], level=logging.DEBUG)
 
     # 添加文件输出处理器
     for level in ["DEBUG", "INFO", "WARNING", "ERROR"]:
