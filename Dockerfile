@@ -7,7 +7,7 @@ WORKDIR /workspace
 COPY . .
 
 # install depts
-RUN pip install uv && uv sync --index-url https://mirrors.aliyun.com/pypi/simple/
+RUN pip install --no-cache-dir --prefix=/usr/local uv && uv sync --index-url https://mirrors.aliyun.com/pypi/simple/
 
 EXPOSE 8191
 
