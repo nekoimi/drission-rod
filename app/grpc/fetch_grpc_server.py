@@ -1,35 +1,51 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # nekoimi 2025/9/13
-import grpc
-from app.utils.nettools import get_lan_ip
 from concurrent.futures import ThreadPoolExecutor
-from app.grpc.fetch_pb2_grpc import add_PageFetchServiceServicer_to_server, PageFetchServiceServicer
-from loguru import logger
-from app.rod.javdb_browser import browser
 
-from app.config import c
+from DrissionPage import Chromium
+
+from app.downloader.browser import BrowserDownloader
+from app.downloader.default.downloader import DefaultBrowserDownloader, FetchRequest
+from app.downloader.javdb.downloader import JavDBBrowserDownloader
+from app.downloader.sehuatang.downloader import SehuatangBrowserDownloader
+from app.grpc.fetch_pb2_grpc import PageFetchServiceServicer
 
 thread_pool = ThreadPoolExecutor(max_workers=10)
 
 
-def start_grpc_server():
-    ip = get_lan_ip()
-    logger.info("当前主机IP：{}", ip)
+class ChromiumPageFetchServiceServicer(PageFetchServiceServicer):
+    browser: Chromium
+    default_downloader: BrowserDownloader
+    javdb_downloader: BrowserDownloader
+    sehuatang_downloader: BrowserDownloader
 
-    server = grpc.server(thread_pool=thread_pool)
-    add_PageFetchServiceServicer_to_server(
-        servicer=PageFetchServiceServicer(),
-        server=server
-    )
-    listen_addr = f"{ip}:{c.grpc_port}"
-    server.add_insecure_port(address=listen_addr)
-    logger.info(f"Starting server on {listen_addr} ...")
-    try:
-        browser.start()
-        server.start()
-        server.wait_for_termination()
-    except Exception as e:
-        logger.warning(str(e))
-    finally:
-        browser.stop()
+    def __init__(self, browser: Chromium):
+        self.browser = browser
+        self.default_downloader = DefaultBrowserDownloader(self.browser)
+        self.javdb_downloader = JavDBBrowserDownloader(self.browser)
+        self.sehuatang_downloader = SehuatangBrowserDownloader(self.browser)
+
+    def Fetch(self, request, context):
+        return self.default_downloader.download(
+            req=FetchRequest(
+                url=request.url,
+                timeout=request.timeout
+            )
+        )
+
+    def FetchJavDB(self, request, context):
+        return self.javdb_downloader.download(
+            req=FetchRequest(
+                url=request.url,
+                timeout=request.timeout
+            )
+        )
+
+    def FetchSehuatang(self, request, context):
+        return self.sehuatang_downloader.download(
+            req=FetchRequest(
+                url=request.url,
+                timeout=request.timeout
+            )
+        )

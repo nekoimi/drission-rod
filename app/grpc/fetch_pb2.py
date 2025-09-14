@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0b\x66\x65tch.proto\",\n\x0c\x46\x65tchRequest\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x0f\n\x07timeout\x18\x02 \x01(\x05\"=\n\rFetchResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0c\n\x04html\x18\x02 \x01(\t\x12\r\n\x05\x65rror\x18\x03 \x01(\t2g\n\x10PageFetchService\x12&\n\x05\x46\x65tch\x12\r.FetchRequest\x1a\x0e.FetchResponse\x12+\n\nFetchJavDB\x12\r.FetchRequest\x1a\x0e.FetchResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0b\x66\x65tch.proto\",\n\x0c\x46\x65tchRequest\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x0f\n\x07timeout\x18\x02 \x01(\x05\"=\n\rFetchResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0c\n\x04html\x18\x02 \x01(\t\x12\r\n\x05\x65rror\x18\x03 \x01(\t2\x98\x01\n\x10PageFetchService\x12&\n\x05\x46\x65tch\x12\r.FetchRequest\x1a\x0e.FetchResponse\x12+\n\nFetchJavDB\x12\r.FetchRequest\x1a\x0e.FetchResponse\x12/\n\x0e\x46\x65tchSehuatang\x12\r.FetchRequest\x1a\x0e.FetchResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -35,6 +35,6 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_FETCHREQUEST']._serialized_end=59
   _globals['_FETCHRESPONSE']._serialized_start=61
   _globals['_FETCHRESPONSE']._serialized_end=122
-  _globals['_PAGEFETCHSERVICE']._serialized_start=124
-  _globals['_PAGEFETCHSERVICE']._serialized_end=227
+  _globals['_PAGEFETCHSERVICE']._serialized_start=125
+  _globals['_PAGEFETCHSERVICE']._serialized_end=277
 # @@protoc_insertion_point(module_scope)

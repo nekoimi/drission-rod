@@ -14,4 +14,5 @@ message FetchResponse {
 service PageFetchService {
   rpc Fetch(FetchRequest) returns (FetchResponse);
   rpc FetchJavDB(FetchRequest) returns (FetchResponse);
+  rpc FetchSehuatang(FetchRequest) returns (FetchResponse);
 }
