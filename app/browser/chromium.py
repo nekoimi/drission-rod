@@ -11,7 +11,6 @@ def setup_browser() -> Chromium:
     options = ChromiumOptions()
     options.no_imgs(False)  # 设置不加载图片
     options.mute(True)  # 静音
-    options.auto_port(True)
     options.set_argument('--disable-software-rasterizer')
     options.set_argument('--disable-gpu')
     options.set_argument('--no-sandbox')
