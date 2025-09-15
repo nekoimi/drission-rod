@@ -20,10 +20,10 @@ def setup_browser() -> Chromium:
         options = ChromiumOptions()
         options.no_imgs(False)  # 设置不加载图片
         options.mute(True)  # 静音
-        #options.set_argument("--disable-software-rasterizer")
-        #options.set_argument("--disable-gpu")
+        options.set_argument("--disable-software-rasterizer")
+        options.set_argument("--disable-gpu")
         #options.set_argument("--no-sandbox")
-        #options.set_argument("--disable-dev-shm-usage")
+        options.set_argument("--disable-dev-shm-usage")
         #options.set_argument("--disable-extensions")
         options.set_argument("--window-size", "1920,1080")
         # 判断 DISPLAY 环境变量
