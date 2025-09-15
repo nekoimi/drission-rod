@@ -40,13 +40,11 @@ WORKDIR /workspace
 
 # 创建工作目录并添加用户
 RUN mkdir -p /workspace && mkdir -p /var/lib/chromium-data && \
-    mkdir -p /var/run/supervisor && \
     groupadd -g 1000 appuser && \
     useradd -u 1000 -g 1000 -ms /bin/bash appuser && \
     chown -R appuser:appuser /workspace && \
     chown -R appuser:appuser /var/lib/chromium-data && \
-    chown -R appuser:appuser /var/log/supervisor && \
-    chown -R appuser:appuser /var/run/supervisor
+    chown -R appuser:appuser /var/log/supervisor
 
 # Autorun chrome headless
 ENV CHROMIUM_FLAGS="--disable-software-rasterizer --disable-dev-shm-usage"
