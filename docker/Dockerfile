@@ -24,7 +24,6 @@ RUN apt-get update \
         websockify \
         xfce4 \
         xfce4-terminal \
-        dbus-x11 \
           \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
         dpkg-reconfigure -f noninteractive tzdata && \
