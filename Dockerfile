@@ -7,7 +7,7 @@ WORKDIR /workspace
 COPY . .
 
 # Run as privileged
-USER root
+# USER root
 
 # install depts
 RUN uv sync --index-url https://mirrors.aliyun.com/pypi/simple/
@@ -21,6 +21,6 @@ RUN curl -L https://github.com/grpc-ecosystem/grpc-health-probe/releases/downloa
 COPY supervisord.conf /etc/supervisor/conf.d/drission-rod.conf
 
 # Run as non-privileged
-USER appuser
+# USER appuser
 
 EXPOSE 8191

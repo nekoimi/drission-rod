@@ -60,7 +60,7 @@ ENV CHROMIUM_DATA_DIR=/var/lib/chromium-data
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Run as non-privileged
-USER appuser
+#USER appuser
 
 VOLUME /var/lib/chromium-data
 
