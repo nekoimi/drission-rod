@@ -36,12 +36,16 @@ COPY local.conf /etc/fonts/local.conf
 # install uv
 RUN pip install --no-cache-dir --prefix=/usr/local uv
 
+WORKDIR /workspace
+
 # 创建工作目录并添加用户
 RUN mkdir -p /workspace && mkdir -p /var/lib/chromium-data && \
     groupadd -g 1000 appuser && \
     useradd -u 1000 -g 1000 -ms /bin/bash appuser && \
     chown -R appuser:appuser /workspace && \
-    chown -R appuser:appuser /var/lib/chromium-data
+    chown -R appuser:appuser /var/lib/chromium-data && \
+    chown -R appuser:appuser /var/log/supervisor && \
+    chown -R appuser:appuser /var/run/supervisor
 
 # Autorun chrome headless
 ENV CHROMIUM_FLAGS="--disable-software-rasterizer --disable-dev-shm-usage"
@@ -54,7 +58,8 @@ ENV CHROMIUM_DATA_DIR=/var/lib/chromium-data
 # Supervisor 配置
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-WORKDIR /workspace
+# Run as non-privileged
+USER appuser
 
 VOLUME /var/lib/chromium-data
 
