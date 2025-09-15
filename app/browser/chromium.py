@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # nekoimi 2025/9/14
 import os
+import platform
 from DrissionPage import Chromium, ChromiumOptions
 from DrissionPage.common import Settings
 from loguru import logger
@@ -21,11 +22,14 @@ def setup_browser() -> Chromium:
         options.no_imgs(False)  # 设置不加载图片
         options.mute(True)  # 静音
         options.set_argument("--lang=zh-CN")
-        options.set_argument("--disable-software-rasterizer")
-        options.set_argument("--disable-gpu")
-        options.set_argument("--no-sandbox")
-        options.set_argument("--disable-dev-shm-usage")
-        options.set_argument("--disable-extensions")
+        if platform.system() == "Windows":
+            logger.info("检测到 Windows 环境")
+        else:
+            options.set_argument("--disable-software-rasterizer")
+            options.set_argument("--disable-gpu")
+            options.set_argument("--no-sandbox")
+            options.set_argument("--disable-dev-shm-usage")
+            options.set_argument("--disable-extensions")
         options.set_argument("--window-size", "1920,1080")
         # 判断 DISPLAY 环境变量
         display_env = os.environ.get("DISPLAY", "")
@@ -44,7 +48,8 @@ def setup_browser() -> Chromium:
         options.set_user_agent(
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36"
         )
-        options.set_user_data_path(path=c.chromium_data_dir)
+        if c.chromium_data_dir:
+            options.set_user_data_path(path=c.chromium_data_dir)
         _browser = Chromium(addr_or_opts=options)
         logger.debug("初始化chromium...")
     return _browser

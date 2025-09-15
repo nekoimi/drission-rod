@@ -78,6 +78,7 @@ class JavDBBrowserDownloader(BrowserDownloader):
     def cloudflare_check(self, page_tab: MixTab):
         title = page_tab.title
         logger.debug(f"cloudflare_check - title: {title}")
+        page_tab.wait(30)
 
     def download(self, req: FetchRequest) -> str:
         logger.debug(f"开始下载页面：{req.url} ...")

@@ -21,7 +21,7 @@ class Config(BaseSettings):
     # 浏览器配置
     chromium_headless: bool = False
     chromium_proxy: str = "http://127.0.0.1:12080"
-    chromium_data_dir: str
+    chromium_data_dir: str = ""
     # javdb
     javdb_username: str = ""
     javdb_password: str = ""
