@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # nekoimi 2025/9/14
+import os
 from DrissionPage import Chromium, ChromiumOptions
 from DrissionPage.common import Settings
 from loguru import logger
@@ -25,9 +26,18 @@ def setup_browser() -> Chromium:
         options.set_argument("--disable-dev-shm-usage")
         options.set_argument("--disable-extensions")
         options.set_argument("--window-size", "1920,1080")
-        if c.chromium_headless:
-            options.headless(on_off=True)
-            options.set_argument("--headless=new")
+        # 判断 DISPLAY 环境变量
+        display_env = os.environ.get("DISPLAY", "")
+        if display_env == ":99":
+            # 在 Xvfb 虚拟桌面下 → 默认启用有界面模式
+            logger.info("检测到 DISPLAY=:99，启动有界面模式（非 headless）")
+            options.headless(on_off=False)
+        else:
+            if c.chromium_headless:
+                options.headless(on_off=True)
+                options.set_argument("--headless=new")
+            else:
+                options.headless(on_off=False)
         if c.chromium_proxy:
             options.set_proxy(proxy=c.chromium_proxy)
         options.set_user_agent(

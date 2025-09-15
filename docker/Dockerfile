@@ -16,6 +16,15 @@ RUN apt-get update \
         fonts-wqy-zenhei \
         tzdata \
         ca-certificates \
+          \
+        supervisor \
+        xvfb \
+        x11vnc \
+        novnc \
+        websockify \
+        xfce4 \
+        xfce4-terminal \
+          \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
         dpkg-reconfigure -f noninteractive tzdata && \
         update-ca-certificates && \
@@ -42,8 +51,14 @@ ENV CHROME_BIN=/usr/bin/chromium
 ENV CHROMIUM_BROWSER_PATH=/usr/bin/chromium
 ENV CHROMIUM_DATA_DIR=/var/lib/chromium-data
 
+# Supervisor 配置
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 WORKDIR /workspace
 
 VOLUME /var/lib/chromium-data
 
-# ENTRYPOINT ["chromium", "--headless"]
+# 监听 VNC 5900, noVNC 6080
+EXPOSE 5900 6080
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

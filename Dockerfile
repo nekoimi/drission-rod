@@ -14,6 +14,7 @@ RUN curl -L https://github.com/grpc-ecosystem/grpc-health-probe/releases/downloa
     -o /usr/local/bin/grpc_health_probe \
     && chmod +x /usr/local/bin/grpc_health_probe
 
-EXPOSE 8191
+# Supervisor 配置
+COPY supervisord.conf /etc/supervisor/conf.d/drission-rod.conf
 
-CMD [ "uv", "run", "main.py" ]
+EXPOSE 8191
