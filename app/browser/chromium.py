@@ -45,9 +45,9 @@ def setup_browser() -> Chromium:
                 options.headless(on_off=False)
         if c.chromium_proxy:
             options.set_proxy(proxy=c.chromium_proxy)
-        options.set_user_agent(
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36"
-        )
+        # options.set_user_agent(
+        #     user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36"
+        # )
         if c.chromium_data_dir:
             options.set_user_data_path(path=c.chromium_data_dir)
         _browser = Chromium(addr_or_opts=options)
