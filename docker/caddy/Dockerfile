@@ -8,6 +8,7 @@ ENV TZ=Asia/Shanghai
 # 安装依赖：Chromium、字体、中文字体、时区
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+        wget \
         curl \
         tar \
         gnupg \
