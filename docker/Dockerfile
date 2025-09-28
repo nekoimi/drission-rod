@@ -22,8 +22,7 @@ RUN apt-get update \
         x11vnc \
         novnc \
         websockify \
-        xfce4 \
-        xfce4-terminal \
+        openbox \
           \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
         dpkg-reconfigure -f noninteractive tzdata && \
