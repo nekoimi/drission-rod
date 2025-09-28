@@ -60,6 +60,7 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 #USER appuser
 
 VOLUME /var/lib/chromium-data
+VOLUME /var/log/supervisor
 
 # 监听 VNC 5900, noVNC 6080
 EXPOSE 5900 6080
