@@ -4,6 +4,7 @@
 from concurrent.futures import ThreadPoolExecutor
 
 import grpc
+from apscheduler.schedulers.background import BackgroundScheduler
 from loguru import logger
 
 from app.browser import get_browser, close_browser
@@ -16,10 +17,18 @@ from app.utils.nettools import get_lan_ip
 setup_loguru()
 thread_pool = ThreadPoolExecutor(max_workers=10)
 
+scheduler = BackgroundScheduler()
+
+
+@scheduler.scheduled_job("interval", seconds=30)
+def keepalive_browser():
+    get_browser()
+    logger.info("Keep alive browser...")
+
 
 def serve():
     logger.info("服务启动中...")
-    get_browser()
+    scheduler.start()
     ip = get_lan_ip()
     logger.info("当前主机IP：{}", ip)
 
