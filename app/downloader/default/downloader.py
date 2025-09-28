@@ -1,15 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # nekoimi 2025/9/14
-from DrissionPage import Chromium
 from loguru import logger
 
 from app.downloader.browser import BrowserDownloader, FetchRequest
 
 
 class DefaultBrowserDownloader(BrowserDownloader):
-    def __init__(self, browser: Chromium):
-        super().__init__(browser)
 
     def download(self, req: FetchRequest) -> str:
         logger.debug(f"开始下载页面：{req.url} ...")

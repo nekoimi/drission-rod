@@ -6,22 +6,20 @@ from concurrent.futures import ThreadPoolExecutor
 import grpc
 from loguru import logger
 
+from app.browser import get_browser, close_browser
 from app.config import c
 from app.grpc.fetch_grpc_server import ChromiumPageFetchServiceServicer
 from app.grpc.fetch_pb2_grpc import add_PageFetchServiceServicer_to_server
-from app.browser import setup_browser
-from app.utils.nettools import get_lan_ip
 from app.log import setup_loguru
+from app.utils.nettools import get_lan_ip
 
 setup_loguru()
 thread_pool = ThreadPoolExecutor(max_workers=10)
-# 初始化 Chromium
-browser = setup_browser()
 
 
 def serve():
     logger.info("服务启动中...")
-
+    get_browser()
     ip = get_lan_ip()
     logger.info("当前主机IP：{}", ip)
 
@@ -29,7 +27,7 @@ def serve():
         # 启动 grpc 服务
         server = grpc.server(thread_pool=thread_pool)
         add_PageFetchServiceServicer_to_server(
-            servicer=ChromiumPageFetchServiceServicer(browser=browser), server=server
+            servicer=ChromiumPageFetchServiceServicer(), server=server
         )
         listen_addr = f"0.0.0.0:{c.grpc_port}"
         server.add_insecure_port(address=listen_addr)
@@ -40,7 +38,7 @@ def serve():
         logger.warning(str(e))
     finally:
         logger.debug("quit chromium...")
-        browser.quit(del_data=c.debug)
+        close_browser()
 
 
 if __name__ == "__main__":

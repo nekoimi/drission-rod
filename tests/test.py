@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # nekoimi 2025/9/12
 from app.config import c
-from app.browser import setup_browser
+from app.browser import get_browser
 from app.downloader.javdb.downloader import JavDBBrowserDownloader
 from app.downloader.default.downloader import FetchRequest
 from app.log import setup_loguru
@@ -11,7 +11,7 @@ from loguru import logger
 setup_loguru()
 
 # 初始化 Chromium
-browser = setup_browser()
+browser = get_browser()
 javdb_downloader = JavDBBrowserDownloader(browser)
 
 if __name__ == "__main__":

@@ -1,20 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # nekoimi 2025/9/14
-from DrissionPage import Chromium
 from DrissionPage.items import MixTab
 from ddddocr import DdddOcr
 from loguru import logger
-from app.downloader.browser import BrowserDownloader, FetchRequest
 
 from app.config import c
+from app.downloader.browser import BrowserDownloader, FetchRequest
 
 
 class JavDBBrowserDownloader(BrowserDownloader):
     ocr: DdddOcr
 
-    def __init__(self, browser: Chromium):
-        super().__init__(browser)
+    def __init__(self):
         # 初始化ocr
         self.ocr = DdddOcr(show_ad=False)
 

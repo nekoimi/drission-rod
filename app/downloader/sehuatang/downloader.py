@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # nekoimi 2025/9/14
-from DrissionPage import Chromium
 from DrissionPage.items import MixTab
 from loguru import logger
 
@@ -9,8 +8,6 @@ from app.downloader.browser import BrowserDownloader, FetchRequest
 
 
 class SehuatangBrowserDownloader(BrowserDownloader):
-    def __init__(self, browser: Chromium):
-        super().__init__(browser)
 
     def r18modal_check(self, page_tab: MixTab):
         content = page_tab.ele("#hd")

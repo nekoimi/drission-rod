@@ -7,6 +7,8 @@ from DrissionPage import Chromium
 from DrissionPage.items import MixTab
 from pydantic import BaseModel
 
+from app.browser import get_browser
+
 
 class FetchRequest(BaseModel):
     url: str
@@ -14,10 +16,10 @@ class FetchRequest(BaseModel):
 
 
 class BrowserDownloader(abc.ABC):
-    browser: Chromium
 
-    def __init__(self, browser: Chromium):
-        self.browser = browser
+    @property
+    def browser(self) -> Chromium:
+        return get_browser()
 
     def wait_page_complete(self, page_tab: MixTab):
         page_tab.wait.doc_loaded()

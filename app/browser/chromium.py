@@ -3,6 +3,7 @@
 # nekoimi 2025/9/14
 import os
 import platform
+
 from DrissionPage import Chromium, ChromiumOptions
 from DrissionPage.common import Settings
 from loguru import logger
@@ -14,9 +15,11 @@ _browser: Chromium | None = None
 Settings.set_language("zh_cn")  # 设置为中文时，填入'zh_cn'
 
 
-def setup_browser() -> Chromium:
+def _setup_browser() -> Chromium:
     global _browser
-    if _browser is None:
+    if _browser is None or not _browser.states.is_alive:
+        # try close
+        close_browser()
         # 初始化浏览器
         options = ChromiumOptions()
         options.no_imgs(False)  # 设置不加载图片
@@ -45,11 +48,20 @@ def setup_browser() -> Chromium:
                 options.headless(on_off=False)
         if c.chromium_proxy:
             options.set_proxy(proxy=c.chromium_proxy)
-        # options.set_user_agent(
-        #     user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36"
-        # )
         if c.chromium_data_dir:
             options.set_user_data_path(path=c.chromium_data_dir)
         _browser = Chromium(addr_or_opts=options)
         logger.debug("初始化chromium...")
     return _browser
+
+
+def get_browser() -> Chromium:
+    return _setup_browser()
+
+
+def close_browser():
+    global _browser
+    if _browser is not None:
+        logger.debug("close browser...")
+        _browser.quit(del_data=False)
+        _browser = None
