@@ -9,6 +9,7 @@ ENV TZ=Asia/Shanghai
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         curl \
+        wget \
         unzip \
         chromium \
         fonts-freefont-ttf \
