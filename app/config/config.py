@@ -18,10 +18,11 @@ class Config(BaseSettings):
 
     debug: bool = True
     grpc_port: int = 8191
-    # 浏览器配置
-    chromium_headless: bool = False
-    chromium_proxy: str = "http://127.0.0.1:12080"
-    chromium_data_dir: str = ""
+    # CloakBrowser-Manager 远程浏览器配置
+    cloak_manager_url: str = ""
+    cloak_profile_id: str = ""
+    cloak_auth_token: str = ""
+    cloak_idle_timeout: int = 300  # 空闲超时秒数，默认5分钟
     # javdb
     javdb_username: str = ""
     javdb_password: str = ""

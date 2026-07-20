@@ -1,0 +1,40 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.idea
+.vscode
+.claude
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.egg-info
+.ruff_cache
+
+# Virtual environment
+.venv
+
+# Logs
+logs
+
+# Docker
+docker
+
+# Test files
+tests
+test_*.py
+
+# Documentation
+docs
+*.md
+
+# Environment
+.env
+.env.example
+
+# Other
+*.log
+*.tmp
