@@ -4,6 +4,7 @@
 from concurrent.futures import ThreadPoolExecutor
 
 import grpc
+from grpc_health.v1 import health, health_pb2, health_pb2_grpc
 from loguru import logger
 
 from app.browser import shutdown_browser, start_idle_checker
@@ -31,6 +32,12 @@ def serve():
         add_PageFetchServiceServicer_to_server(
             servicer=ChromiumPageFetchServiceServicer(), server=server
         )
+        health_servicer = health.HealthServicer()
+        health_servicer.set("", health_pb2.HealthCheckResponse.SERVING)
+        health_servicer.set(
+            "grpc.PageFetchService", health_pb2.HealthCheckResponse.SERVING
+        )
+        health_pb2_grpc.add_HealthServicer_to_server(health_servicer, server)
         listen_addr = f"0.0.0.0:{c.grpc_port}"
         server.add_insecure_port(address=listen_addr)
         logger.info(f"Starting server on {listen_addr} ...")
